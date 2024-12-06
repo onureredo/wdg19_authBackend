@@ -3,6 +3,7 @@ import asyncHandler from '../utils/asyncHandler.js';
 import ErrorResponse from '../utils/ErrorResponse.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import config from '../config/config.js';
 
 // REGISTER
 export const signUp = asyncHandler(async (req, res, next) => {
@@ -49,11 +50,23 @@ export const signIn = asyncHandler(async (req, res, next) => {
   const token = jwt.sign({ uid: existingUser._id }, process.env.JWT_SECRET, {
     expiresIn: '30m',
   });
-  res.json({ token });
+  // res.json({ token });
+
+  // const isProduction = process.env.NODE_ENV === 'production';
+  // console.log(`Running in ${isProduction ? 'production' : 'development'} mode`);
+
+  res.cookie('token', token, config.cookieSettings);
+  res.send({ status: 'logged in' });
 });
 
 // GET USER DETAILS
 export const getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.uid);
   res.json(user);
+});
+
+// Logout
+export const signOut = asyncHandler(async (req, res, next) => {
+  res.clearCookie('token', config.cookieSettings);
+  res.send({ status: 'logged out' });
 });
