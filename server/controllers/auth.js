@@ -52,9 +52,6 @@ export const signIn = asyncHandler(async (req, res, next) => {
   });
   // res.json({ token });
 
-  // const isProduction = process.env.NODE_ENV === 'production';
-  // console.log(`Running in ${isProduction ? 'production' : 'development'} mode`);
-
   res.cookie('token', token, config.cookieSettings);
   res.send({ status: 'logged in' });
 });

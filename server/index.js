@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import config from './config/config.js';
 
+// const isProduction = process.env.NODE_ENV === 'production';
+// console.log(`Running in ${isProduction ? 'production' : 'development'} mode`);
+
 const app = express();
 const PORT = 8000;
 
