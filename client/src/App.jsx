@@ -1,6 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import CreatePost from './components/CreatePost';
+import SinglePost from './components/SinglePost';
+import NotFound from './pages/NotFound';
 
 function App() {
   // console.log(import.meta.env.VITE_API_URL);
@@ -10,6 +15,11 @@ function App() {
       <MainLayout />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/register' element={<RegisterForm />} />
+        <Route path='/post' element={<CreatePost />} />
+        <Route path='/posts/:id' element={<SinglePost />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </>
   );
