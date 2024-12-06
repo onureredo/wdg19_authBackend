@@ -45,15 +45,7 @@ function SinglePost() {
   return (
     <div className='container mx-auto mt-8 p-4'>
       <h1 className='text-3xl font-semibold'>{post.title}</h1>
-      <img
-        className='my-4 rounded'
-        src={post.image}
-        alt={post.title}
-        onError={(e) => {
-          e.target.src =
-            'https://pokemon-ko.netlify.app/static/media/not_found.6d682c14615b3df8087f.png';
-        }}
-      />
+      <img className='my-4 rounded' src={post.image} alt={post.title} />
       <p className='my-4'>{post.content}</p>
       <p>
         <Link className='text-blue-500 hover:underline' to='/'>

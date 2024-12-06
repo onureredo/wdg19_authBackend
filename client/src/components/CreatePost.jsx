@@ -31,7 +31,7 @@ function CreatePost() {
         navigate('/');
       }
     } catch (error) {
-      toast.error(error.response.data.error.message || 'Something went wrong');
+      toast.error(error.response.data.error || 'Error creating post');
       console.error(error);
     }
   };
@@ -44,6 +44,7 @@ function CreatePost() {
     <div className='container mx-auto max-w-md mt-8 rounded-xl shadow-xl shadow-gray-500'>
       <div className='p-4'>
         <h2 className='text-2xl font-semibold mb-4'>Create a Blog Post</h2>
+
         <form onSubmit={handlePost}>
           <div className='mb-4'>
             <label className='block mb-2'>Title:</label>
@@ -66,7 +67,7 @@ function CreatePost() {
             />
           </div>
           <div className='mb-4'>
-            <label className='block mb-2'>ImageURL:</label>
+            <label className='block mb-2'>Image-url:</label>
             <input
               type='text'
               name='image'
@@ -75,9 +76,7 @@ function CreatePost() {
               className='border rounded w-full p-2'
             />
           </div>
-          <button className='bg-blue-500 text-white p-2 rounded' type='submit'>
-            POST
-          </button>
+          <button className='bg-blue-500 text-white p-2 rounded'>POST</button>
         </form>
       </div>
     </div>

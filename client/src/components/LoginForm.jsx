@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../context/AuthProvider';
 import axios from 'axios';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassowrd] = useState('');
   const [error, setError] = useState('');
   const { setIsLoggedIn, checkUser } = useAuth();
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -16,10 +17,7 @@ function LoginForm() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
-        {
-          email,
-          password,
-        },
+        { email, password },
         {
           withCredentials: true,
         }
@@ -32,14 +30,15 @@ function LoginForm() {
         if (user) {
           toast.success(`Welcome back, ${user.firstName}`);
         } else {
-          toast.error("Couldn't retrieve user data.");
+          toast.error('Couldnt retrieve user data');
         }
 
         navigate('/');
       }
     } catch (error) {
-      setError(error.response.data.error || 'Something went wrong');
+      setError(error.response.data.error || 'Login failed');
       toast.error(error.response.data.error);
+      console.error(error);
     }
   };
 
@@ -52,7 +51,7 @@ function LoginForm() {
           <div className='mb-4'>
             <label className='block mb-2'>Email:</label>
             <input
-              type='text'
+              type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className='border rounded w-full p-2'
@@ -63,7 +62,7 @@ function LoginForm() {
             <input
               type='password'
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassowrd(e.target.value)}
               className='border rounded w-full p-2'
             />
           </div>
@@ -74,12 +73,10 @@ function LoginForm() {
             LOGIN
           </button>
         </form>
-        <p className='mt-4'>
-          Not registered?{' '}
-          <Link to='/register' className='text-blue-500 underline'>
-            Register here
-          </Link>
-        </p>
+        <p className='mt-4'>Not registered yet?</p>
+        <Link to='/register' className='text-blue-500 underline'>
+          Register here
+        </Link>
       </div>
     </div>
   );

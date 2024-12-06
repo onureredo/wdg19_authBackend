@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -14,9 +14,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/auth/me`,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
 
       if (response.data && response.data._id) {

@@ -1,11 +1,11 @@
-import { Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import SinglePost from './components/SinglePost';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import { Route, Routes } from 'react-router-dom';
 import CreatePost from './components/CreatePost';
-import SinglePost from './components/SinglePost';
-import NotFound from './pages/NotFound';
 
 function App() {
   // console.log(import.meta.env.VITE_API_URL);
