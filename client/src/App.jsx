@@ -1,9 +1,16 @@
+import { Route, Routes } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
+
 function App() {
   // console.log(import.meta.env.VITE_API_URL);
 
   return (
     <>
-      <h1 className='text-3xl font-bold underline'>TravelBlog</h1>
+      <MainLayout />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </>
   );
 }
